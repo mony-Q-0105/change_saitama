@@ -1,0 +1,53 @@
+//----------------------------------------------------
+/*! Type: YakuHanJPs - Based on Noto Sans CJK JP */
+//----------------------------------------------------
+
+$yakuhanjps-font-family: "YakuHanJPs" !default;
+$yakuhanjps-font-file: "YakuHanJPs" !default;
+$yakuhanjps-font-dir: "../fonts" !default;
+$yakuhanjps-eot-use: true !default;
+$yakuhanjps-cdn-use: false !default;
+$yakuhanjps-cdn-version: "3.2.0" !default;
+$yakuhanjps-weight: (
+  100: Thin,
+  200: Light,
+  300: DemiLight,
+  400: Regular,
+  500: Medium,
+  700: Bold,
+  900: Black
+) !default;
+
+@each $key, $value in $yakuhanjps-weight {
+  @font-face {
+    $family: $yakuhanjps-font-family;
+    $file: $yakuhanjps-font-file;
+    $dir: $yakuhanjps-font-dir;
+    $eot: $yakuhanjps-eot-use;
+    $cdn: $yakuhanjps-cdn-use;
+    $version: $yakuhanjps-cdn-version;
+    $jsdelivr: "https://cdn.jsdelivr.net/npm/yakuhanjp";
+
+    font-family: $family;
+    font-style: normal;
+    font-weight: $key;
+
+    @if $eot == true and $cdn == true {
+      src: url("#{$jsdelivr}@#{$version}/dist/fonts/#{$file}/#{$file}-#{$value}.eot");
+    }
+
+    @if $eot == true and $cdn == false {
+      src: url("#{$dir}/#{$file}/#{$file}-#{$value}.eot");
+    }
+
+    @if $cdn == true {
+      src: url("#{$jsdelivr}@#{$version}/dist/fonts/#{$file}/#{$file}-#{$value}.woff2")
+          format("woff2"),
+        url("#{$jsdelivr}@#{$version}/dist/fonts/#{$file}/#{$file}-#{$value}.woff")
+          format("woff");
+    } @else {
+      src: url("#{$dir}/#{$file}/#{$file}-#{$value}.woff2") format("woff2"),
+        url("#{$dir}/#{$file}/#{$file}-#{$value}.woff") format("woff");
+    }
+  }
+}

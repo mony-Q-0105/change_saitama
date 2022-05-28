@@ -1,0 +1,10 @@
+/*
+!.gitignore
+!/wp
+/wp/*
+!/wp/wp-content
+!/wp/docker-compose.yml
+/wp/wp-content/*
+!/wp/wp-content/themes
+/wp/wp-content/themes/*
+!/wp/wp-content/themes/change_saitama

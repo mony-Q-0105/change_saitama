@@ -1,0 +1,53 @@
+//----------------------------------------------------
+/*! Type: YakuHanRP - Based on Rounded M+ 1c */
+//----------------------------------------------------
+
+$yakuhanrp-font-family: "YakuHanRP" !default;
+$yakuhanrp-font-file: "YakuHanRP" !default;
+$yakuhanrp-font-dir: "../fonts" !default;
+$yakuhanrp-eot-use: true !default;
+$yakuhanrp-cdn-use: false !default;
+$yakuhanrp-cdn-version: "3.2.0" !default;
+$yakuhanrp-weight: (
+  100: Thin,
+  300: Light,
+  400: Regular,
+  500: Medium,
+  700: Bold,
+  800: ExtraBold,
+  900: Black
+) !default;
+
+@each $key, $value in $yakuhanrp-weight {
+  @font-face {
+    $family: $yakuhanrp-font-family;
+    $file: $yakuhanrp-font-file;
+    $dir: $yakuhanrp-font-dir;
+    $eot: $yakuhanrp-eot-use;
+    $cdn: $yakuhanrp-cdn-use;
+    $version: $yakuhanrp-cdn-version;
+    $jsdelivr: "https://cdn.jsdelivr.net/npm/yakuhanjp";
+
+    font-family: $family;
+    font-style: normal;
+    font-weight: $key;
+
+    @if $eot == true and $cdn == true {
+      src: url("#{$jsdelivr}@#{$version}/dist/fonts/#{$file}/#{$file}-#{$value}.eot");
+    }
+
+    @if $eot == true and $cdn == false {
+      src: url("#{$dir}/#{$file}/#{$file}-#{$value}.eot");
+    }
+
+    @if $cdn == true {
+      src: url("#{$jsdelivr}@#{$version}/dist/fonts/#{$file}/#{$file}-#{$value}.woff2")
+          format("woff2"),
+        url("#{$jsdelivr}@#{$version}/dist/fonts/#{$file}/#{$file}-#{$value}.woff")
+          format("woff");
+    } @else {
+      src: url("#{$dir}/#{$file}/#{$file}-#{$value}.woff2") format("woff2"),
+        url("#{$dir}/#{$file}/#{$file}-#{$value}.woff") format("woff");
+    }
+  }
+}
